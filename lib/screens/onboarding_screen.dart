@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../dummy_data.dart';
+import '../widgets/custom_button.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -60,9 +61,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               );
             }),
       ),
-      bottomSheet: SizedBox(
+      bottomSheet: Container(
           height: size.height * 0.25,
           width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
               Container(
@@ -76,7 +78,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 alignment: Alignment.center,
-                width: size.width * 0.8,
+                width: double.infinity,
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.blueAccent, width: 1.5),
                     borderRadius: BorderRadius.circular(10)),
@@ -91,21 +93,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               const SizedBox(
                 height: 12,
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.circular(10)),
-                width: size.width * 0.8,
-                child: const Text(
-                  'Sign In',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17,
-                      color: Colors.white),
-                ),
-              )
+              CustomButton(onTap: () {}, text: 'Log in')
             ],
           )),
     );
