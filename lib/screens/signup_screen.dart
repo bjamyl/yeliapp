@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+// Provider import
+import '../providers/auth.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_icon_button.dart';
 import '../widgets/or_continue_with.dart';
@@ -8,15 +11,39 @@ import '../widgets/custom_text_field.dart';
 
 class SignupScreen extends StatefulWidget {
   final void Function()? onTap;
-  const SignupScreen({super.key,required this.onTap});
+  const SignupScreen({super.key, required this.onTap});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey();
+
+  var isLoading = false;
+
+  // On submission of the form
+  Future<void> _submit() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    _formKey.currentState!.save();
+    setState(() {
+      isLoading = true;
+    });
+
+    // Signing the user up
+    try {
+      await Provider.of<Auth>(context, listen: false).signup();
+    } catch (e) {
+      rethrow;
+    }
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -90,24 +117,38 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: OrContinueWith(),
                 ),
                 //loginfields
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.grey)),
-                  child: Column(
-                    children: const [
-                      CustomTextField(hintText: 'First name'),
-                      CustomTextField(hintText: 'Last name'),
-                      CustomTextField(hintText: 'Email address'),
-                      PasswordTextField(
-                        hintText: "Password",
-                        isBorder: true,
-                      ),
-                      PasswordTextField(
-                        hintText: "Confirm password",
-                        isBorder: false,
-                      ),
-                    ],
+                Form(
+                  key: _formKey,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.grey)),
+                    child: Column(
+                      children: const [
+                        CustomTextField(
+                          hintText: 'First name',
+                          field: 'first_name',
+                        ),
+                        CustomTextField(
+                          hintText: 'Last name',
+                          field: 'last_name',
+                        ),
+                        CustomTextField(
+                          hintText: 'Email address',
+                          field: 'email',
+                        ),
+                        PasswordTextField(
+                          field: 'password',
+                          hintText: "Password",
+                          isBorder: true,
+                        ),
+                        PasswordTextField(
+                          field: 're_password',
+                          hintText: "Confirm password",
+                          isBorder: false,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -116,7 +157,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 //forgot password
                 const Spacer(),
                 //continue button
-                CustomButton(onTap: () {}, text: "Continue")
+                CustomButton(onTap: _submit, text: "Continue")
               ],
             ),
           ),

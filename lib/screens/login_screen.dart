@@ -97,8 +97,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       border: Border.all(color: Colors.grey)),
                   child: Column(
                     children: const [
-                      CustomTextField(hintText: 'Email address'),
+                      CustomTextField(hintText: 'Email address', field: 'email',),
                       PasswordTextField(
+                        field: 'password',
                         hintText: "Password",
                         isBorder: false,
                       ),
