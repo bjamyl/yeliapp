@@ -5,6 +5,8 @@ import 'providers/auth.dart';
 //Screen imports
 import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
+import 'screens/home_screen.dart';
+import 'screens/tabs_screen.dart';
 
 import 'services/auth/login_or_register.dart';
 
@@ -19,9 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (ctx)=>Auth())
-      ],
+      providers: [ChangeNotifierProvider(create: (ctx) => Auth())],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Poppins',
             primarySwatch: Colors.blue,
           ),
-          home: const LoginOrRegister()),
+          home: const TabsScreen()),
     );
   }
 }

@@ -38,6 +38,7 @@ dependencies:
   flutter_svg: ^1.0.0
   http: 0.13.6
   provider: ^6.0.5
+  syncfusion_flutter_gauges: ^23.2.6
 
 dev_dependencies:
   flutter_test:
