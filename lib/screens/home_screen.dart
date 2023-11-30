@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'sleep_screen.dart';
 // Widget imports
 import '../widgets/metric_card.dart';
+import '../widgets/metrics/moodscore.dart';
 import '../widgets/tracker_card.dart';
 import '../widgets/metrics/yeliscore.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<double> weeklySummary = [1, 2, 1, 4, 1, 1, 4];
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +64,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         children: [
                       TextSpan(
-                          text: 'Shuri!',
+                          text: 'Jamil!',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 26))
                     ])),
@@ -72,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                 height: 200,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children:  [
+                  children: const [
                     MetricCard(
                         icon: Icons.favorite,
                         color: Color.fromRGBO(155, 177, 103, 1),
@@ -82,7 +91,7 @@ class HomeScreen extends StatelessWidget {
                         color: Color.fromRGBO(237, 126, 28, 1),
                         cardName: 'Mood',
                         icon: Icons.emoji_emotions,
-                        childScore: Yeliscore()),
+                        childScore: MoodScore()),
                     MetricCard(
                         color: Color.fromRGBO(166, 148, 245, 1),
                         cardName: 'Sleep',
@@ -101,13 +110,18 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              TrackerCard(
-                cardName: "Sleep Quality",
-                description: 'Insomniac (~2h Avg)',
-                icon: Icons.bed,
-                iconColor: const Color.fromRGBO(166, 148, 245, 1),
-                iconContainerColor:
-                    const Color.fromRGBO(166, 148, 245, 1).withOpacity(0.2),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed(SleepScreen.routeName);
+                },
+                child: TrackerCard(
+                  cardName: "Sleep Quality",
+                  description: 'Insomniac (~2h Avg)',
+                  icon: Icons.bed,
+                  iconColor: const Color.fromRGBO(166, 148, 245, 1),
+                  iconContainerColor:
+                      const Color.fromRGBO(166, 148, 245, 1).withOpacity(0.2),
+                ),
               ),
               TrackerCard(
                 cardName: "Mood Tracker",

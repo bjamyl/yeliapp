@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class MetricCard extends StatefulWidget {
   const MetricCard(
@@ -24,13 +23,14 @@ class _MetricCardState extends State<MetricCard> {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      margin: const EdgeInsets.only(right: 15),
-      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.only(right: 16),
+      padding: const EdgeInsets.all(16),
       width: size.width * 0.4,
       height: 185,
       decoration: BoxDecoration(
           color: widget.color, borderRadius: BorderRadius.circular(25)),
-      child: Column(children: [
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Row(
           children: [
             Icon(
@@ -47,10 +47,11 @@ class _MetricCardState extends State<MetricCard> {
             )
           ],
         ),
-        const SizedBox(
-          height: 8,
+        SizedBox(
+          height: 120,
+          width: double.infinity,
+          child: widget.childScore,
         ),
-        widget.childScore
       ]),
     );
   }

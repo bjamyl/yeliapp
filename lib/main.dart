@@ -7,6 +7,7 @@ import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/tabs_screen.dart';
+import 'screens/sleep_screen.dart';
 
 import 'services/auth/login_or_register.dart';
 
@@ -23,15 +24,17 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (ctx) => Auth())],
       child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            bottomSheetTheme: BottomSheetThemeData(
-                backgroundColor: Colors.black.withOpacity(0)),
-            fontFamily: 'Poppins',
-            primarySwatch: Colors.blue,
-          ),
-          home: const TabsScreen()),
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          bottomSheetTheme: BottomSheetThemeData(
+              backgroundColor: Colors.black.withOpacity(0)),
+          fontFamily: 'Poppins',
+          primarySwatch: Colors.blue,
+        ),
+        home: const TabsScreen(),
+        routes: {SleepScreen.routeName: (context) => const SleepScreen()},
+      ),
     );
   }
 }
