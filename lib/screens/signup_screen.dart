@@ -123,8 +123,8 @@ class _SignupScreenState extends State<SignupScreen> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(color: Colors.grey)),
-                    child: Column(
-                      children: const [
+                    child: const Column(
+                      children: [
                         CustomTextField(
                           hintText: 'First name',
                           field: 'first_name',

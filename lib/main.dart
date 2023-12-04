@@ -32,8 +32,11 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Poppins',
           primarySwatch: Colors.blue,
         ),
-        home: const TabsScreen(),
-        routes: {SleepScreen.routeName: (context) => const SleepScreen()},
+        home: const LoginOrRegister(),
+        routes: {
+          SleepScreen.routeName: (context) => const SleepScreen(),
+          TabsScreen.routeName: (context) => const TabsScreen(),
+        },
       ),
     );
   }

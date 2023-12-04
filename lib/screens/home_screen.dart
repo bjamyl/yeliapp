@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'sleep_screen.dart';
 // Widget imports
 import '../widgets/metric_card.dart';
+import '../providers/auth.dart';
 import '../widgets/metrics/moodscore.dart';
 import '../widgets/tracker_card.dart';
 import '../widgets/metrics/yeliscore.dart';
@@ -19,6 +21,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final userFirstName =
+        Provider.of<Auth>(context, listen: false).userFirstName;
+
     return Scaffold(
       backgroundColor: const Color.fromRGBO(247, 244, 242, 1),
       appBar: AppBar(
@@ -54,9 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 12, bottom: 40),
                 child: RichText(
-                    text: const TextSpan(
+                    text: TextSpan(
                         text: 'Good Afternoon, \n',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: "Poppins",
                           fontSize: 25,
                           color: Colors.black,
@@ -64,8 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         children: [
                       TextSpan(
-                          text: 'Jamil!',
-                          style: TextStyle(
+                          text: "$userFirstName!",
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 26))
                     ])),
               ),

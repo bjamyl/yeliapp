@@ -12,12 +12,12 @@ class SleepScreen extends StatefulWidget {
 }
 
 class _SleepScreenState extends State<SleepScreen> {
-   
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {}, label: const Text('Add Sleep record')),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
