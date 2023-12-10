@@ -6,12 +6,14 @@ class MetricCard extends StatefulWidget {
       required this.color,
       required this.cardName,
       required this.icon,
+      required this.imageDir,
       required this.childScore});
 
   final Color color;
   final String cardName;
   final IconData icon;
   final Widget childScore;
+  final String imageDir;
 
   @override
   State<MetricCard> createState() => _MetricCardState();
@@ -25,7 +27,7 @@ class _MetricCardState extends State<MetricCard> {
     return Container(
       margin: const EdgeInsets.only(right: 16),
       padding: const EdgeInsets.all(16),
-      width: size.width * 0.4,
+      width: size.width * 0.75,
       height: 185,
       decoration: BoxDecoration(
           color: widget.color, borderRadius: BorderRadius.circular(25)),
@@ -47,10 +49,22 @@ class _MetricCardState extends State<MetricCard> {
             )
           ],
         ),
-        SizedBox(
-          height: 120,
-          width: double.infinity,
-          child: widget.childScore,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              height: 130,
+              width: 120,
+              child: widget.childScore,
+            ),
+            SizedBox(
+                width: 120,
+                height: 130,
+                child: Image.asset(
+                  widget.imageDir,
+                  fit: BoxFit.contain,
+                ))
+          ],
         ),
       ]),
     );

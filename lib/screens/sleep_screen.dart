@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../widgets/date_card.dart';
+import '../widgets/sleep_quality_card.dart';
 
 class SleepScreen extends StatefulWidget {
   const SleepScreen({super.key});
@@ -38,93 +39,7 @@ class _SleepScreenState extends State<SleepScreen> {
                 const SizedBox(
                   height: 32,
                 ),
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  height: size.height * 0.2,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: const Color.fromRGBO(166, 148, 245, 1)),
-                  child: const Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Your sleep score',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                '65',
-                                style: TextStyle(
-                                    fontSize: 70,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                width: 16,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.bar_chart_rounded,
-                                        color: Colors.white,
-                                      ),
-                                      Text(
-                                        'Avg Sleep Time',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      SizedBox(
-                                        width: 8,
-                                      ),
-                                      Text(
-                                        '7.5hrs',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.watch_later_rounded,
-                                        color: Colors.white,
-                                      ),
-                                      Text(
-                                        'Target Sleep Time',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 8,
-                                      ),
-                                      Text(
-                                        '8hrs',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                const SleepQualityCard(),
                 const SizedBox(
                   height: 16,
                 ),

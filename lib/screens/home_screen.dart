@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'sleep_screen.dart';
 // Widget imports
-import '../widgets/metric_card.dart';
 import '../providers/auth.dart';
-import '../widgets/metrics/moodscore.dart';
-import '../widgets/tracker_card.dart';
-import '../widgets/metrics/yeliscore.dart';
+import '../widgets/daily_widgets_container.dart';
+import '../widgets/health_metrics_container.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,8 +13,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<double> weeklySummary = [1, 2, 1, 4, 1, 1, 4];
-
   @override
   Widget build(BuildContext context) {
     final userFirstName =
@@ -30,14 +24,13 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         actions: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: GestureDetector(
-              child: SvgPicture.asset(
-                'assets/icons/bell.svg',
-                height: 35,
-              ),
-            ),
-          )
+              padding: const EdgeInsets.only(right: 20),
+              child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.notifications_none_rounded,
+                    size: 32,
+                  )))
         ],
         backgroundColor: Colors.transparent,
         leading: const Padding(
@@ -63,15 +56,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         text: 'Good Afternoon, \n',
                         style: const TextStyle(
                           fontFamily: "Poppins",
-                          fontSize: 25,
+                          fontSize: 32,
                           color: Colors.black,
                           height: 1.2,
                         ),
                         children: [
                       TextSpan(
-                          text: "$userFirstName!",
+                          text: "Jamil!",
                           style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 26))
+                            fontWeight: FontWeight.bold,
+                            fontSize: 28,
+                          ))
                     ])),
               ),
               const Text(
@@ -79,79 +74,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.start,
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                height: 200,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: const [
-                    MetricCard(
-                        icon: Icons.favorite,
-                        color: Color.fromRGBO(155, 177, 103, 1),
-                        cardName: 'Yeli Score',
-                        childScore: Yeliscore()),
-                    MetricCard(
-                        color: Color.fromRGBO(237, 126, 28, 1),
-                        cardName: 'Mood',
-                        icon: Icons.emoji_emotions,
-                        childScore: MoodScore()),
-                    MetricCard(
-                        color: Color.fromRGBO(166, 148, 245, 1),
-                        cardName: 'Sleep',
-                        icon: Icons.bed,
-                        childScore: Yeliscore())
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 30,
+              const Padding(
+                padding: EdgeInsets.only(top: 16, bottom: 32),
+                child: HealthMetricsContainer(),
               ),
               const Text(
-                'Mindful Tracker',
+                'Daily Tracker',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(
                 height: 10,
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushNamed(SleepScreen.routeName);
-                },
-                child: TrackerCard(
-                  cardName: "Sleep Quality",
-                  description: 'Insomniac (~2h Avg)',
-                  icon: Icons.bed,
-                  iconColor: const Color.fromRGBO(166, 148, 245, 1),
-                  iconContainerColor:
-                      const Color.fromRGBO(166, 148, 245, 1).withOpacity(0.2),
-                ),
-              ),
-              TrackerCard(
-                cardName: "Mood Tracker",
-                description: 'Sad',
-                icon: Icons.emoji_emotions,
-                iconColor: const Color.fromRGBO(146, 98, 71, 1),
-                iconContainerColor:
-                    const Color.fromRGBO(146, 98, 71, 1).withOpacity(0.2),
-              ),
-              TrackerCard(
-                cardName: "My Journal",
-                description: '20 Day Streak',
-                icon: Icons.note_add_rounded,
-                iconColor: const Color.fromRGBO(237, 126, 28, 1),
-                iconContainerColor:
-                    const Color.fromRGBO(237, 136, 28, 1).withOpacity(0.2),
-              ),
-              TrackerCard(
-                cardName: "Mood Tracker",
-                description: 'Sad',
-                icon: Icons.emoji_emotions,
-                iconColor: const Color.fromRGBO(146, 98, 71, 1),
-                iconContainerColor:
-                    const Color.fromRGBO(146, 98, 71, 1).withOpacity(0.2),
-              )
+              const DailyTrackerContainer()
             ],
           ),
         ),

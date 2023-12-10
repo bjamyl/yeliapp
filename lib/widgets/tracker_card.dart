@@ -1,65 +1,70 @@
 import 'package:flutter/material.dart';
 
-class TrackerCard extends StatefulWidget {
+class TrackerCard extends StatelessWidget {
   const TrackerCard(
       {super.key,
       required this.cardName,
+      required this.isText,
       required this.icon,
       required this.iconColor,
-      required this.iconContainerColor,
-      required this.description});
+      required this.measurable,
+      required this.trackItem,
+      required this.iconBG});
   final String cardName;
   final IconData icon;
   final Color iconColor;
-  final Color iconContainerColor;
-  final String description;
+  final Color iconBG;
+  final Widget trackItem;
+  final bool isText;
+  final String measurable;
 
-  @override
-  State<TrackerCard> createState() => _TrackerCardState();
-}
-
-class _TrackerCardState extends State<TrackerCard> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      height: 75,
-      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      width: size.width * 0.3,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15), color: Colors.white),
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-      child: Row(
+          color: Colors.white, borderRadius: BorderRadius.circular(25)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                  color: widget.iconContainerColor,
-                  borderRadius: BorderRadius.circular(20)),
-              child: Icon(
-                widget.icon,
-                color: widget.iconColor,
-              )),
-          const SizedBox(
-            width: 10,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
+          Row(
             children: [
-              Text(
-                widget.cardName,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+              Icon(
+                icon,
+                color: iconColor,
               ),
-              Text(
-                widget.description,
-                style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(141, 135, 131, 1)),
-              )
+              const SizedBox(
+                width: 2,
+              ),
+              Wrap(children: [
+                Text(
+                  cardName,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 12),
+                ),
+              ]),
             ],
           ),
+          FittedBox(
+            child: Text(
+              measurable,
+              style: const TextStyle(fontSize: 28, fontFamily: "Barlow"),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                alignment: Alignment.centerRight,
+                width: isText? 100 : 50,
+                height: 50,
+                child: trackItem,
+              ),
+            ],
+          )
         ],
       ),
     );

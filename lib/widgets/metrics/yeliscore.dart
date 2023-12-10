@@ -2,32 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class Yeliscore extends StatelessWidget {
-  const Yeliscore({super.key});
+  const Yeliscore(
+      {super.key,
+      required this.gaugeNumberColor,
+      required this.rangePointerColor,
+      required this.axisLineColor,
+      required this.score, required this.isBig});
+
+  final Color gaugeNumberColor;
+  final Color rangePointerColor;
+  final Color axisLineColor;
+  final int score;
+  final bool isBig;
 
   @override
   Widget build(BuildContext context) {
     return SfRadialGauge(
       axes: [
         RadialAxis(
-          pointers: const <GaugePointer>[
+          pointers: <GaugePointer>[
             RangePointer(
-              color: Colors.white,
-              value: 80,
+              color: rangePointerColor,
+              value: score.ceilToDouble(),
               cornerStyle: CornerStyle.bothCurve,
               width: 0.2,
               sizeUnit: GaugeSizeUnit.factor,
             )
           ],
-          annotations: const <GaugeAnnotation>[
+          annotations: <GaugeAnnotation>[
             GaugeAnnotation(
               positionFactor: 0.1,
               angle: 90,
               widget: Text(
-                '80',
+                score.toString(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                  color: Colors.white,
+                  fontSize: isBig? 26 : 18,
+                  color: gaugeNumberColor,
                 ),
               ),
             )
@@ -36,10 +47,10 @@ class Yeliscore extends StatelessWidget {
           maximum: 100,
           showLabels: false,
           showTicks: false,
-          axisLineStyle: const AxisLineStyle(
+          axisLineStyle: AxisLineStyle(
               thickness: 0.2,
               cornerStyle: CornerStyle.bothCurve,
-              color: Color.fromRGBO(180, 196, 141, 1),
+              color: axisLineColor,
               thicknessUnit: GaugeSizeUnit.factor),
         )
       ],

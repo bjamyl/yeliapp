@@ -25,14 +25,14 @@ class MyApp extends StatelessWidget {
       providers: [ChangeNotifierProvider(create: (ctx) => Auth())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Yeli Health App',
         theme: ThemeData(
           bottomSheetTheme: BottomSheetThemeData(
               backgroundColor: Colors.black.withOpacity(0)),
           fontFamily: 'Poppins',
           primarySwatch: Colors.blue,
         ),
-        home: const LoginOrRegister(),
+        home: const TabsScreen(),
         routes: {
           SleepScreen.routeName: (context) => const SleepScreen(),
           TabsScreen.routeName: (context) => const TabsScreen(),

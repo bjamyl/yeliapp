@@ -40,6 +40,7 @@ dependencies:
   syncfusion_flutter_gauges: ^23.2.6
   fl_chart: ^0.65.0
   syncfusion_flutter_charts: ^23.2.6
+  syncfusion_flutter_datepicker: ^23.2.7
   jwt_decoder: ^2.0.1
 
 dev_dependencies:
@@ -92,6 +93,12 @@ flutter:
         - asset: assets/fonts/Poppins-Medium.ttf
         - asset: assets/fonts/Poppins-SemiBold.ttf
         - asset: assets/fonts/Poppins-Bold.ttf
+    - family: Barlow
+      fonts:
+        - asset: assets/fonts/BarlowCondensed-Bold.ttf
+        - asset: assets/fonts/BarlowCondensed-Medium.ttf
+        - asset: assets/fonts/BarlowCondensed-SemiBold.ttf
+        - asset: assets/fonts/BarlowCondensed-Thin.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
