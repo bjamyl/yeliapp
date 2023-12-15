@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import '../contants.dart';
 
 class MetricCard extends StatefulWidget {
   const MetricCard(
       {super.key,
-      required this.color,
       required this.cardName,
+      required this.iconColor,
       required this.icon,
       required this.imageDir,
       required this.childScore});
 
-  final Color color;
   final String cardName;
   final IconData icon;
   final Widget childScore;
   final String imageDir;
+  final Color iconColor;
 
   @override
   State<MetricCard> createState() => _MetricCardState();
@@ -30,22 +31,24 @@ class _MetricCardState extends State<MetricCard> {
       width: size.width * 0.75,
       height: 185,
       decoration: BoxDecoration(
-          color: widget.color, borderRadius: BorderRadius.circular(25)),
+          border: Border.all(width: 1.5, color: kBlue.withOpacity(0.3)),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(25)),
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Row(
           children: [
             Icon(
               widget.icon,
-              color: Colors.white,
+              color: widget.iconColor,
             ),
             const SizedBox(
               width: 8,
             ),
             Text(
               widget.cardName,
-              style: const TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold),
+              style:
+                  const TextStyle(color: kBlack, fontWeight: FontWeight.bold),
             )
           ],
         ),

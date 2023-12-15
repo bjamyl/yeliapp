@@ -3,11 +3,11 @@ import './home_screen.dart';
 import './messages_screen.dart';
 import './metrics_screen.dart';
 import './profile_screen.dart';
+import '../contants.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
-    static const routeName = '/tabscreen';
-
+  static const routeName = '/tabscreen';
 
   @override
   State<TabsScreen> createState() => _TabsScreenState();
@@ -33,7 +33,7 @@ class _TabsScreenState extends State<TabsScreen> {
           backgroundColor: const Color.fromRGBO(242, 247, 255, 1),
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          selectedItemColor: Colors.green,
+          selectedItemColor: kBlue,
           unselectedItemColor: Colors.grey,
           onTap: (index) {
             setState(() {

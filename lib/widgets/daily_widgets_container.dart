@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../contants.dart';
 import './metrics/yeliscore.dart';
 import './tracker_card.dart';
+import '../screens/sleep_screen.dart';
 
 class DailyTrackerContainer extends StatelessWidget {
   const DailyTrackerContainer({
@@ -10,79 +11,76 @@ class DailyTrackerContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 380,
-      child: GridView.count(
-        crossAxisCount: 2,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-        children: [
-          TrackerCard(
-            isText: true,
-            measurable: '5h 30m',
-            cardName: 'Sleep Quality',
-            icon: Icons.bed,
-            iconColor: kDefaultPurple,
-            iconBG: kDefaultPurple.withOpacity(0.2),
-            trackItem: Container(
-              padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(10)),
-              child: const FittedBox(
-                child: Text(
-                  'On Target',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),
-            ),
+    return Column(
+      children: [
+        const TrackerCard(
+          routeName: SleepScreen.routeName,
+          statsWidget: BarLoader(barColor: kDefaultOrange),
+          trackDesc: '5h30m',
+          trackTitle: 'Sleep time',
+        ),
+        const TrackerCard(
+          routeName: SleepScreen.routeName,
+          statsWidget: Icon(
+            Icons.emoji_emotions,
+            color: kPurple,
           ),
-          TrackerCard(
-            isText: false,
-            measurable: 'Almost there!',
-            cardName: 'Physical Activity',
-            icon: Icons.run_circle,
-            trackItem: Yeliscore(
-              isBig: false,
-              score: 55,
-              gaugeNumberColor: Colors.blueAccent,
-              rangePointerColor: Colors.blue,
-              axisLineColor: Colors.blue.withOpacity(0.1),
-            ),
-            iconColor: kDefaultOrange,
-            iconBG: kDefaultOrange.withOpacity(0.2),
+          trackTitle: 'Mood tracker',
+          trackDesc: 'Happy',
+        ),
+        TrackerCard(
+          routeName: SleepScreen.routeName,
+          statsWidget: Yeliscore(
+              gaugeNumberColor: kBlue,
+              rangePointerColor: kBlue,
+              axisLineColor: kBlue.withOpacity(0.3),
+              score: 20,
+              isBig: false),
+          trackTitle: 'Physical activity',
+          trackDesc: 'Getting there',
+        ),
+        const TrackerCard(
+          routeName: SleepScreen.routeName,
+          statsWidget: BarLoader(
+            barColor: kGreenColor,
           ),
-          TrackerCard(
-            isText: false,
-            measurable: 'Getting there',
-            cardName: 'Social Activity',
-            icon: Icons.watch,
-            trackItem: Yeliscore(
-              isBig: false,
-              score: 15,
-              gaugeNumberColor: Colors.blueAccent,
-              rangePointerColor: Colors.blue,
-              axisLineColor: Colors.blue.withOpacity(0.1),
-            ),
-            iconColor: kDefaultGreen,
-            iconBG: kDefaultGreen.withOpacity(0.2),
+          trackTitle: 'Social activity',
+          trackDesc: 'Almost there',
+        ),
+      ],
+    );
+  }
+}
+
+class BarLoader extends StatelessWidget {
+  const BarLoader({
+    super.key,
+    required this.barColor,
+  });
+
+  final Color barColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          width: 100,
+          height: 8,
+          decoration: BoxDecoration(
+            color: barColor.withOpacity(0.3),
+            borderRadius: BorderRadius.circular(10),
           ),
-          TrackerCard(
-            isText: true,
-            measurable: 'Feeling good!',
-            trackItem: Text(
-              'Happy',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(0.6)),
-            ),
-            cardName: 'Mood Tracker',
-            icon: Icons.emoji_emotions,
-            iconColor: kDefaultPurple,
-            iconBG: kDefaultPurple.withOpacity(0.2),
+        ),
+        Container(
+          width: 80,
+          height: 8,
+          decoration: BoxDecoration(
+            color: barColor,
+            borderRadius: BorderRadius.circular(10),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

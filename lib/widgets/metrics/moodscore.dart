@@ -1,30 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import '../../contants.dart';
 
 class MoodScore extends StatelessWidget {
   const MoodScore({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SfCartesianChart(
-      plotAreaBorderWidth: 0,
-      primaryXAxis: CategoryAxis(
-        majorGridLines: const MajorGridLines(width: 0),
-        isVisible: false,
-      ),
-      primaryYAxis: NumericAxis(
-          isVisible: false,
+    Size size = MediaQuery.of(context).size;
+    return SizedBox(
+      width: size.width * 0.35,
+      height: size.height * 0.18,
+      child: SfCartesianChart(
+        plotAreaBorderWidth: 0,
+        primaryXAxis: CategoryAxis(
           majorGridLines: const MajorGridLines(width: 0),
-          axisLine: const AxisLine(width: 0)),
-      series: [
-        ColumnSeries(
-            color: Colors.white,
-            isTrackVisible: false,
-            borderRadius: BorderRadius.circular(15),
-            dataSource: getColumnData(),
-            xValueMapper: (SalesData sales, _) => sales.x,
-            yValueMapper: (SalesData sales, _) => sales.y)
-      ],
+          isVisible: false,
+        ),
+        primaryYAxis: NumericAxis(
+            isVisible: false,
+            majorGridLines: const MajorGridLines(width: 0),
+            axisLine: const AxisLine(width: 0)),
+        series: [
+          ColumnSeries(
+              color: kDefaultPurple,
+              isTrackVisible: false,
+              borderRadius: BorderRadius.circular(15),
+              dataSource: getColumnData(),
+              xValueMapper: (SalesData sales, _) => sales.x,
+              yValueMapper: (SalesData sales, _) => sales.y)
+        ],
+      ),
     );
   }
 }

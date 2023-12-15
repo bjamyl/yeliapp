@@ -1,72 +1,64 @@
 import 'package:flutter/material.dart';
+import '../contants.dart';
 
 class TrackerCard extends StatelessWidget {
   const TrackerCard(
       {super.key,
-      required this.cardName,
-      required this.isText,
-      required this.icon,
-      required this.iconColor,
-      required this.measurable,
-      required this.trackItem,
-      required this.iconBG});
-  final String cardName;
-  final IconData icon;
-  final Color iconColor;
-  final Color iconBG;
-  final Widget trackItem;
-  final bool isText;
-  final String measurable;
+      required this.routeName,
+      required this.statsWidget,
+      required this.trackTitle,
+      required this.trackDesc});
+
+  final Widget statsWidget;
+  final String trackTitle;
+  final String trackDesc;
+  final String routeName;
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      padding: const EdgeInsets.all(16),
-      width: size.width * 0.3,
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(25)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
+    return GestureDetector(
+        onTap: () {
+          Navigator.of(context).pushNamed(routeName);
+        },
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 16),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          width: double.infinity,
+          height: 85,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            color: Colors.white,
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(
-                icon,
-                color: iconColor,
+              RichText(
+                text: TextSpan(
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 122, 119, 119)),
+                    text: trackTitle,
+                    children: [
+                      TextSpan(
+                          text: '\n$trackDesc',
+                          style: const TextStyle(
+                              color: kBlack,
+                              fontFamily: 'Barlow',
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold))
+                    ]),
               ),
-              const SizedBox(
-                width: 2,
-              ),
-              Wrap(children: [
-                Text(
-                  cardName,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 12),
+              SizedBox(
+                width: 150,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    FittedBox(child: statsWidget),
+                  ],
                 ),
-              ]),
+              )
             ],
           ),
-          FittedBox(
-            child: Text(
-              measurable,
-              style: const TextStyle(fontSize: 28, fontFamily: "Barlow"),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                alignment: Alignment.centerRight,
-                width: isText? 100 : 50,
-                height: 50,
-                child: trackItem,
-              ),
-            ],
-          )
-        ],
-      ),
-    );
+        ));
   }
 }

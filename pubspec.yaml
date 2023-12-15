@@ -40,7 +40,7 @@ dependencies:
   syncfusion_flutter_gauges: ^23.2.6
   fl_chart: ^0.65.0
   syncfusion_flutter_charts: ^23.2.6
-  syncfusion_flutter_datepicker: ^23.2.7
+  font_awesome_flutter: ^10.6.0
   jwt_decoder: ^2.0.1
 
 dev_dependencies:
