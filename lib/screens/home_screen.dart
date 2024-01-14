@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yeliapp/widgets/metrics/moodscore.dart';
 import 'package:yeliapp/widgets/metrics/yeliscore.dart';
 import '../contants.dart';
-import './sleep_screen.dart';
 // Widget imports
-import '../providers/auth.dart';
+// import '../providers/auth.dart';
 import '../widgets/daily_widgets_container.dart';
-import '../widgets/health_metrics_container.dart';
 import '../services/utils/month_string_util.dart';
+import '../services/utils/time_of_day.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,8 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final userFirstName =
-        Provider.of<Auth>(context, listen: false).userFirstName;
+    // final userFirstName =
+    //     Provider.of<Auth>(context, listen: false).userFirstName;
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
@@ -81,10 +80,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: 8,
               ),
               RichText(
-                  text: const TextSpan(
-                      text: 'Good Afternoon! \n',
-                      style: TextStyle(color: Colors.black),
-                      children: [
+                  text: TextSpan(
+                      text: 'Good ${greeting()}! \n',
+                      style: const TextStyle(color: Colors.black),
+                      children: const [
                     TextSpan(
                         text: 'Jamil',
                         style: TextStyle(
