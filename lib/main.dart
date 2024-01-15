@@ -8,6 +8,7 @@ import 'screens/signup_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/tabs_screen.dart';
 import 'screens/sleep_screen.dart';
+import 'screens/sleep_input_screen.dart';
 
 import 'services/auth/login_or_register.dart';
 
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         routes: {
           SleepScreen.routeName: (context) => const SleepScreen(),
           TabsScreen.routeName: (context) => const TabsScreen(),
+          SleepInputScreen.routeName: (context) => const SleepInputScreen()
         },
       ),
     );

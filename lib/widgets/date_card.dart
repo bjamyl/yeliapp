@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../contants.dart';
 
 class DateCard extends StatelessWidget {
   const DateCard(
@@ -21,15 +22,13 @@ class DateCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       height: 80,
       decoration: BoxDecoration(
-          color: Color.fromARGB(255, 241, 238, 238),
-          borderRadius: BorderRadius.circular(16)),
+          color: kBackgroundColor, borderRadius: BorderRadius.circular(16)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             decoration: BoxDecoration(
-                color: const Color.fromRGBO(247, 244, 242, 1),
-                borderRadius: BorderRadius.circular(10)),
+                color: Colors.white, borderRadius: BorderRadius.circular(10)),
             padding: const EdgeInsets.all(8),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -66,24 +65,19 @@ class DateCard extends StatelessWidget {
                     height: 8,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: const Color.fromRGBO(247, 244, 242, 1)),
+                        color: Colors.black.withOpacity(0.3)),
                   ),
                   Container(
                     width: num,
                     height: 8,
                     decoration: BoxDecoration(
-                        color: Colors.brown,
+                        color: Colors.black26,
                         borderRadius: BorderRadius.circular(20)),
                   )
                 ],
               )
             ],
           ),
-          const Spacer(),
-          SvgPicture.asset(
-            'assets/icons/sad.svg',
-            width: 35,
-          )
         ],
       ),
     );

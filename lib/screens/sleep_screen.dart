@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yeliapp/screens/sleep_input_screen.dart';
+import 'package:yeliapp/widgets/custom_floating_button.dart';
+import '../contants.dart';
 import '../widgets/date_card.dart';
 import '../services/utils/month_string_util.dart';
 import '../widgets/sleep_quality_card.dart';
@@ -24,29 +27,44 @@ class _SleepScreenState extends State<SleepScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton:
-          FloatingActionButton(onPressed: () {}, child: Icon(Icons.add)),
+      floatingActionButton: GestureDetector(
+        onTap: () {
+          Navigator.of(context).pushNamed(SleepInputScreen.routeName);
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+          decoration: BoxDecoration(
+              color: kDefaultOrange, borderRadius: BorderRadius.circular(15)),
+          child: const Text(
+            'Record sleep data',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
             onPressed: Navigator.of(context).pop,
             icon: const Icon(
               Icons.arrow_back_ios,
-              color: Colors.white,
+              color: Colors.black,
             )),
         title: RichText(
           text: TextSpan(
               text: 'Sleep quality \n',
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.black),
               children: [
                 TextSpan(
                     text:
                         '${DateFormat('EEEE').format(now)}, $monthWord ${DateTime.now().day.toString()}',
-                    style: const TextStyle(fontSize: 16))
+                    style: const TextStyle(fontSize: 16, color: Colors.black))
               ]),
         ),
       ),
-      backgroundColor: const Color.fromRGBO(23, 20, 37, 1),
+      backgroundColor: kBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

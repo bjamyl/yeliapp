@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(
                   width: 8,
                 ),
-                const FaIcon(FontAwesomeIcons.calendarDays)
+                const FaIcon(FontAwesomeIcons.solidCalendarDays)
               ],
             ),
           ),

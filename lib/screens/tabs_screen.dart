@@ -31,8 +31,8 @@ class _TabsScreenState extends State<TabsScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
           backgroundColor: const Color.fromRGBO(242, 247, 255, 1),
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
           selectedItemColor: kBlue,
           unselectedItemColor: Colors.grey,
           onTap: (index) {
