@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yeliapp/contants.dart';
+import 'package:yeliapp/screens/sleep_screen.dart';
 import '../widgets/sleep_screen/pick_time_widget.dart';
 
 class SleepInputScreen extends StatefulWidget {
@@ -12,7 +13,6 @@ class SleepInputScreen extends StatefulWidget {
 }
 
 class _SleepInputScreenState extends State<SleepInputScreen> {
-  void _showDialogue
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -26,9 +26,10 @@ class _SleepInputScreenState extends State<SleepInputScreen> {
           children: <Widget>[
             const Text('Cancel'),
             GestureDetector(
-              onTap: ,
+              onTap: () {
+                Navigator.of(context).pop();
+              },
               child: const Text('Save'),
-              
             )
           ],
         ),
@@ -37,7 +38,10 @@ class _SleepInputScreenState extends State<SleepInputScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: const Text('Today'),
+        title: const Text(
+          'Today',
+          style: TextStyle(fontSize: 20),
+        ),
       ),
       body: Column(children: [
         Container(

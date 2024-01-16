@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../contants.dart';
 import './metrics/yeliscore.dart';
-import 'package:intl/intl.dart';
-import "../services/utils/month_string_util.dart";
 
 class SleepQualityCard extends StatelessWidget {
   const SleepQualityCard({
@@ -11,99 +9,90 @@ class SleepQualityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime now = DateTime.now();
+    // DateTime now = DateTime.now();
 
     Size size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          border: Border.all(color: kDefaultOrange, width: 1),
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(25)),
+          color: Colors.white, borderRadius: BorderRadius.circular(25)),
       width: double.infinity,
-      height: size.height * 0.25,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
-            'Last recorded date: 2 Days ago',
-            style:
-                TextStyle(fontWeight: FontWeight.bold, color: Colors.black38),
+          Yeliscore(
+              gaugeNumberColor: kDefaultPurple,
+              rangePointerColor: kDefaultPurple,
+              axisLineColor: kDefaultPurple.withOpacity(0.3),
+              score: 80,
+              isBig: true),
+          const SizedBox(
+            width: 32,
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Yeliscore(
-                  gaugeNumberColor: Colors.black26,
-                  rangePointerColor: kDefaultOrange,
-                  axisLineColor: kDefaultOrange.withOpacity(0.3),
-                  score: 80,
-                  isBig: true),
               const SizedBox(
-                width: 32,
+                height: 8,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.bed,
-                        color: kDefaultOrange,
-                        size: 40,
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      RichText(
-                          text: const TextSpan(
-                              text: 'Sleep time \n',
-                              style: TextStyle(color: Colors.black26),
-                              children: [
-                            TextSpan(
-                                text: '7hr 35m',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontFamily: 'Barlow',
-                                ))
-                          ]))
-                    ],
+                  const Icon(
+                    Icons.bed,
+                    color: kDefaultPurple,
+                    size: 40,
                   ),
                   const SizedBox(
-                    height: 16,
+                    width: 8,
                   ),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.access_time_filled,
-                        color: kDefaultOrange,
-                        size: 40,
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      RichText(
-                          text: const TextSpan(
-                              text: 'My target \n',
-                              style: TextStyle(color: Colors.black26),
-                              children: [
-                            TextSpan(
-                                text: '8hr',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontFamily: 'Barlow',
-                                ))
-                          ]))
-                    ],
-                  )
+                  RichText(
+                      text: TextSpan(
+                          text: 'Sleep duration \n',
+                          style:
+                              TextStyle(color: kDefaultPurple.withOpacity(0.4)),
+                          children: const [
+                        TextSpan(
+                            text: '7hr 35m',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontFamily: 'Barlow',
+                            ))
+                      ]))
                 ],
               ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.access_time_filled,
+                    color: kDefaultPurple,
+                    size: 40,
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  RichText(
+                      text: TextSpan(
+                          text: 'My target \n',
+                          style:
+                              TextStyle(color: kDefaultPurple.withOpacity(0.4)),
+                          children: const [
+                        TextSpan(
+                            text: '8hr',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontFamily: 'Barlow',
+                            ))
+                      ]))
+                ],
+              )
             ],
           ),
         ],

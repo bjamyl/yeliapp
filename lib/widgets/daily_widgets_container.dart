@@ -37,7 +37,7 @@ class DailyTrackerContainer extends StatelessWidget {
               score: 20,
               isBig: false),
           trackTitle: 'Physical activity',
-          trackDesc: 'Getting there',
+          trackDesc: 'Good',
         ),
         const TrackerCard(
           routeName: SleepScreen.routeName,
@@ -45,7 +45,7 @@ class DailyTrackerContainer extends StatelessWidget {
             barColor: kGreenColor,
           ),
           trackTitle: 'Social activity',
-          trackDesc: 'Almost there',
+          trackDesc: 'Good',
         ),
       ],
     );

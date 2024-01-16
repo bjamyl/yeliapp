@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yeliapp/widgets/metrics/moodscore.dart';
@@ -57,7 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(
                   width: 8,
                 ),
-                const FaIcon(FontAwesomeIcons.solidCalendarDays)
+                SvgPicture.asset(
+                  'assets/icons/calendar.svg',
+                  width: 25,
+                )
               ],
             ),
           ),
@@ -84,10 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       text: 'Good ${greeting()}! \n',
                       style: const TextStyle(color: Colors.black),
                       children: const [
-                    TextSpan(
-                        text: 'Jamil',
-                        style: TextStyle(
-                            fontSize: 23, fontWeight: FontWeight.bold))
+                    TextSpan(text: 'Jamil', style: TextStyle(fontSize: 23))
                   ]))
             ],
           ),
@@ -104,7 +105,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const Text(
                 'Health Metrics',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
                 textAlign: TextAlign.start,
               ),
               Padding(
